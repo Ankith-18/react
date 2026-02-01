@@ -10,9 +10,6 @@ function SearchTrains() {
   const [bookingType, setBookingType] = useState("GENERAL") // 👈 NEW
 
 
-
-
-
   const navigate = useNavigate()
 
   function handleSearch(e) {

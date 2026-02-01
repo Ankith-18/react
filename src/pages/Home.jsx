@@ -1,82 +1,136 @@
 
-import trainHero from "../assets/images/train-hero.jpg"
-import { Link } from "react-router-dom"
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
-
+import trainHero from "../assets/images/train-hero.jpg";
+import FeatureCard from "../components/FeatureCard";
 
 function Home() {
   return (
-    <div className="min-h-[70vh] bg-gray-100 flex items-center">
-      
-      {/* CONTENT WRAPPER */}
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center px-10">
+    <div className="bg-gray-100 min-h-[80vh] flex items-center">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 px-6">
 
-        {/* LEFT SIDE – TEXT */}
-        <div>
-          <h1 className="text-5xl font-bold text-gray-900 mb-4">
-            Welcome to TrainBook 🚆
-          </h1>
+        {/* LEFT SIDE – BOOK TICKET CARD */}
+        <div className="bg-white rounded-lg shadow-xl overflow-hidden">
 
-          <p className="text-xl text-gray-700 mb-6">
-            Book your train tickets easily — fast, secure, and reliable.
-          </p>
-
-
-
-             <div className="flex gap-5 mt-4">
-
-            {/* SEARCH BUTTON */}
-            <Link
-              to="/search"
-              className="
-                flex items-center gap-3
-                px-7 py-3 rounded-xl
-                text-white text-lg font-semibold
-                bg-gradient-to-r from-blue-600 to-indigo-600
-                hover:from-blue-700 hover:to-indigo-700
-                shadow-lg hover:shadow-xl
-                transition-all duration-300
-              "
-            >
-              🚆 Search Trains
-            </Link>
-
-
-            {/* SIGNUP BUTTON */}
-            <Link
-              to="/signup"
-              className="
-                flex items-center gap-3
-                px-7 py-3 rounded-xl
-                text-lg font-semibold
-                border-2 border-blue-600
-                text-blue-600
-                bg-white
-                hover:bg-blue-50
-                hover:shadow-md
-                transition-all duration-300
-              "
-            >
-              👤 Create Account
-            </Link>
-
+          {/* TABS */}
+          <div className="flex">
+            <button className="flex-1 bg-blue-900 text-white py-3 font-semibold">
+              📄 PNR STATUS
+            </button>
+            <button className="flex-1 bg-blue-800 text-white py-3 font-semibold">
+              📊 CHARTS / VACANCY
+            </button>
           </div>
 
+          {/* CARD BODY */}
+          <div className="p-8">
+            <h2 className="text-3xl font-bold text-blue-900 mb-6">
+              BOOK TICKET
+            </h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <input
+                type="text"
+                placeholder="From Station"
+                className="border p-3 rounded-md"
+              />
+              <input
+                type="text"
+                placeholder="To Station"
+                className="border p-3 rounded-md"
+              />
+              <input
+                type="date"
+                className="border p-3 rounded-md"
+              />
+              <select className="border p-3 rounded-md">
+                <option>All Classes</option>
+                <option value="1A">First AC (1A)</option>
+                <option value="2A">Second AC (2A)</option>
+                <option value="3A">Third AC (3A)</option>
+                <option value="SL">Sleeper (SL)</option>
+                <option value="CC">Chair Car (CC)</option>
+                <option value="2S">Second Sitting (2S)</option>
+              </select>
+            </div>
+
+            <button className="mt-6 w-full bg-orange-500 hover:bg-orange-600 text-white py-3 text-lg font-semibold rounded-md">
+              🔍 Search Trains
+            </button>
+          </div>
         </div>
 
-        {/* RIGHT SIDE – IMAGE */}
-        <div className="flex justify-center">
-          <img
-            src={trainHero}
-            alt="Train"
-            className="rounded-xl shadow-lg max-h-[400px] object-cover"
-          />
+        {/* RIGHT SIDE – INDIAN RAILWAYS HERO */}
+        <div
+          className="relative rounded-lg overflow-hidden shadow-xl"
+          style={{
+            backgroundImage: `url(${trainHero})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
+          <div className="absolute inset-0 bg-blue-900/50"></div>
+
+          <div className="relative p-10 text-white">
+            <h1 className="text-5xl font-extrabold tracking-wide">
+              INDIAN RAILWAYS
+            </h1>
+
+            <div className="mt-4 text-xl space-x-4">
+              <span>Safety</span> | 
+              <span> Security</span> | 
+              <span> Punctuality</span>
+            </div>
+          </div>
         </div>
+          {/* FEATURES SECTION */}
+          <div className="max-w-7xl mx-auto px-6 mt-16">
+            <h2 className="text-3xl font-bold text-gray-800 mb-8">
+              Railway Services
+            </h2>
+
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+
+              <FeatureCard
+                icon="🚆"
+                title="Search Trains"
+                link="/search"
+              />
+
+              <FeatureCard
+                icon="🎫"
+                title="PNR Status"
+                link="/pnr"
+              />
+
+              <FeatureCard
+                icon="📊"
+                title="Charts / Vacancy"
+                link="/charts"
+              />
+
+              <FeatureCard
+                icon="🧾"
+                title="Booking History"
+                link="/history"
+              />
+
+              <FeatureCard
+                icon="📍"
+                title="Live Train Status"
+                link="/live-status"
+              />
+
+              <FeatureCard
+                icon="❌"
+                title="Cancel Ticket"
+                link="/cancel"
+              />
+
+            </div>
+          </div>
 
       </div>
     </div>
-  )
+  );
 }
 
-export default Home
+export default Home;
