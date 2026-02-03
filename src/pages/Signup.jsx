@@ -1,62 +1,3 @@
-// import { useState } from "react"
-
-// function Signup() {
-//   const [name, setName] = useState("")
-//   const [email, setEmail] = useState("")
-//   const [password, setPassword] = useState("")
-
-//   function handleSignup(e) {
-//     e.preventDefault()
-//     alert("Signup Successful (Frontend)")
-//   }
-
-//   return (
-//     <div className="min-h-screen flex justify-center items-center bg-gradient-to-br from-indigo-100 to-blue-200">
-      
-//       <div className="bg-white p-10 rounded-2xl shadow-2xl w-96">
-//         <h2 className="text-3xl font-bold text-center text-indigo-600 mb-6">
-//           Create Account
-//         </h2>
-
-//         <form onSubmit={handleSignup} className="space-y-4">
-//           <input
-//             className="w-full p-3 border rounded focus:ring-2 focus:ring-indigo-400"
-//             type="text"
-//             placeholder="Name"
-//             value={name}
-//             onChange={(e) => setName(e.target.value)}
-//           />
-
-//           <input
-//             className="w-full p-3 border rounded focus:ring-2 focus:ring-indigo-400"
-//             type="email"
-//             placeholder="Email"
-//             value={email}
-//             onChange={(e) => setEmail(e.target.value)}
-//           />
-
-//           <input
-//             className="w-full p-3 border rounded focus:ring-2 focus:ring-indigo-400"
-//             type="password"
-//             placeholder="Password"
-//             value={password}
-//             onChange={(e) => setPassword(e.target.value)}
-//           />
-
-//           <button
-//             className="w-full bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700 transition"
-//           >
-//             Signup
-//           </button>
-//         </form>
-//       </div>
-
-//     </div>
-//   )
-// }
-
-// export default Signup
-
 import { useState } from "react"
 
 function Signup() {
@@ -64,6 +5,7 @@ function Signup() {
     name: "",
     email: "",
     password: "",
+    confirmPassword: "",
     address: "",
     idType: "",
     idNumber: "",
@@ -79,89 +21,159 @@ function Signup() {
   function handleSignup(e) {
     e.preventDefault()
 
+    if (formData.password !== formData.confirmPassword) {
+      alert("Passwords do not match")
+      return
+    }
+
     console.log("IRCTC Account Data:", formData)
     alert("Account created successfully (Frontend Only)")
   }
 
+  const inputClass =
+    "w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 transition"
+
   return (
-    <div className="min-h-screen flex justify-center items-center bg-blue-100">
-      <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-xl">
-        <h2 className="text-3xl font-bold text-center text-blue-700 mb-6">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 to-blue-200 px-4">
+      <div className="bg-white w-full max-w-2xl rounded-2xl shadow-2xl p-10">
+
+        {/* HEADER */}
+        <h2 className="text-3xl font-extrabold text-center text-blue-800">
           Create IRCTC Account
         </h2>
+        <p className="text-center text-gray-600 mt-2 mb-8">
+          Register to book train tickets and access railway services
+        </p>
 
-        <form onSubmit={handleSignup} className="space-y-4">
+        {/* FORM */}
+        <form onSubmit={handleSignup} className="space-y-5">
 
-          <input
-            type="text"
-            name="name"
-            placeholder="Full Name"
-            value={formData.name}
-            onChange={handleChange}
-            className="w-full p-3 border rounded"
-            required
-          />
+          {/* NAME */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Full Name
+            </label>
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              className={inputClass}
+              required
+            />
+          </div>
 
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            value={formData.email}
-            onChange={handleChange}
-            className="w-full p-3 border rounded"
-            required
-          />
+          {/* EMAIL */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Email Address
+            </label>
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              className={inputClass}
+              required
+            />
+          </div>
 
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            value={formData.password}
-            onChange={handleChange}
-            className="w-full p-3 border rounded"
-            required
-          />
+          {/* PASSWORD */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Password
+            </label>
+            <input
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              className={inputClass}
+              required
+            />
+          </div>
 
-          <textarea
-            name="address"
-            placeholder="Complete Address"
-            value={formData.address}
-            onChange={handleChange}
-            className="w-full p-3 border rounded"
-            rows="3"
-            required
-          />
+          {/* CONFIRM PASSWORD */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Confirm Password
+            </label>
+            <input
+              type="password"
+              name="confirmPassword"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              className={inputClass}
+              required
+            />
+          </div>
 
-          <select
-            name="idType"
-            value={formData.idType}
-            onChange={handleChange}
-            className="w-full p-3 border rounded"
-            required
-          >
-            <option value="">Select ID Proof</option>
-            <option value="Aadhaar">Aadhaar Card</option>
-            <option value="PAN">PAN Card</option>
-            <option value="Passport">Passport</option>
-            <option value="Voter ID">Voter ID</option>
-          </select>
+          {/* ADDRESS */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Complete Address
+            </label>
+            <textarea
+              name="address"
+              rows="3"
+              value={formData.address}
+              onChange={handleChange}
+              className={inputClass}
+              required
+            />
+          </div>
 
-          <input
-            type="text"
-            name="idNumber"
-            placeholder="ID Proof Number"
-            value={formData.idNumber}
-            onChange={handleChange}
-            className="w-full p-3 border rounded"
-            required
-          />
+          {/* ID PROOF */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                ID Proof Type
+              </label>
+              <select
+                name="idType"
+                value={formData.idType}
+                onChange={handleChange}
+                className={inputClass}
+                required
+              >
+                <option value="">Select ID Proof</option>
+                <option value="Aadhaar">Aadhaar Card</option>
+                <option value="PAN">PAN Card</option>
+                <option value="Passport">Passport</option>
+                <option value="Voter ID">Voter ID</option>
+              </select>
+            </div>
 
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                ID Proof Number
+              </label>
+              <input
+                type="text"
+                name="idNumber"
+                value={formData.idNumber}
+                onChange={handleChange}
+                className={inputClass}
+                required
+              />
+            </div>
+          </div>
+
+          {/* SUBMIT */}
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700"
+            className="
+              w-full mt-6 py-3
+              bg-orange-500 hover:bg-orange-600
+              text-white text-lg font-semibold
+              rounded-lg
+              shadow-md hover:shadow-lg
+              transition
+            "
           >
             Create Account
           </button>
+
         </form>
       </div>
     </div>
