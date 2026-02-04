@@ -3,7 +3,7 @@
 A modern and responsive **Train Booking System** frontend built using **Vite + Tailwind CSS**.  
 This project focuses on creating a smooth user experience for searching trains, viewing schedules, and booking tickets. Backend integration will be added in future phases.
 
----
+--
 
 ## 📌 Project Overview
 
