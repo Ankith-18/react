@@ -7,12 +7,11 @@ function PnrStatus() {
   if (!pnr) {
     return (
       <div className="min-h-screen flex items-center justify-center text-xl text-red-600">
-        No PNR provided ❌
+        No PNR provided 
       </div>
     )
   }
 
-  // Dummy data (backend will replace)
   const dummyData = {
     train: "Rajdhani Express",
     from: "Delhi",
