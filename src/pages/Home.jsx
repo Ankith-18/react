@@ -5,7 +5,7 @@ function Home() {
   return (
     <div className="bg-gray-100">
 
-      {/* ================= HERO SECTION ================= */}
+      {/* ================= HERO SECTION ==== ============= */}
       <div className="min-h-[80vh] flex items-center">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 px-6">
 
