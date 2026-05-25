@@ -58,4 +58,25 @@ jobs:
         # Dynamically tags the image using your repository username and GitHub Run ID
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/react:${{ github.run_id }}
 
-  
+  update-newtag-in-helm-chart:
+    runs-on: ubuntu-latest
+    needs: push
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.TOKEN }}
+
+    - name: Update tag in Helm chart
+      run: |
+        # Correctly points to your reactt paths inside your repository
+        sed -i 's/tag: .*/tag: "${{ github.run_id }}"/' helm/react/values.yaml
+
+    - name: Commit and push changes
+      run: |
+        git config --global user.email "ankitkr3012005@gmail.com"
+        git config --global user.name "Ankith-18"
+        git add helm/react/values.yaml
+        git commit -m "chore: update container image tag to ${{ github.run_id }} [skip ci]"
+        git push
