@@ -4,7 +4,7 @@ image:
   repository: oyank/go-web-app
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "26388676888"
+  tag: "26505573220"
 
 ingress:
   enabled: false
